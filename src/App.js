@@ -16,14 +16,6 @@ class App extends React.Component {
     );
   }
 
-  
-  // add = (obj, keyToAdd) => {
-  //   return Object.entries(obj).reduce(
-  //     (newObj, [key, value]) =>
-  //         key === keyToAdd ? newObj : {...newObj, [key]: value},
-  //     {}
-  //   );
-  // }
 
   newRandomCard = () => {
     const id = Math.random().toString(36).substring(2, 4)
@@ -35,21 +27,23 @@ class App extends React.Component {
     }
   }
 
+
   handleAddCard = (listId) => {
-    console.log('handle card works')
-    const index = listId - 1
-    const createCard = this.newRandomCard()
-    const newCards = {...this.state.store.allCards, createCard}
+    console.log(listId)
+    const card = this.newRandomCard()
+    const newCards = {...this.state.store.allCards, [card.id]: card }
     console.log(newCards)
     const newList = this.state.store.lists.map(list => {
-      if(list.id === index){ 
-      return ({...list, cardIds: [...list.cardIds, createCard.id]})}
+      if (list.id === listId){
+        return {...list,
+           cardIds: [...list.cardIds, card.id]}
+      } return list;
     })
-        
+    console.log(newList)
     this.setState({
-      store: {lists: newList, allCards: newCards} 
+      store: {lists: newList, allCards: newCards}
     })
-  };
+  }
 
   handleDeleteCard = id => {
     const newCards = this.omit(this.state.store.allCards, id) 
