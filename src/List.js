@@ -24,7 +24,7 @@ export default function List(props) {
             + Add Random Card
           </button>
         </div>
-      </section>
+      </section> 
   )
 
 }
