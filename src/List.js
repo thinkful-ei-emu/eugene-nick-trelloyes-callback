@@ -13,7 +13,9 @@ export default function List(props) {
               <Card 
                 title = {card.title} 
                 content = {card.content} 
-                key = {card.id} 
+                key = {card.id}
+                id = {card.id} 
+                handleDeleteCard = {props.handleDeleteCard}
               />
             )}
 
